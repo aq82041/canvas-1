@@ -14,8 +14,9 @@
       canvas.height = document.documentElement.clientHeight;
       let ctx = canvas.getContext("2d");
 
-      ctx.fillStyle = "blue";
+      ctx.fillStyle = "black";
       let painting = false;
+      ctx.strokeStyle = "none";
       canvas.onmousedown = () => {
         painting = true;
       };
@@ -24,7 +25,10 @@
       };
       canvas.onmousemove = s => {
         if (painting === true) {
-          ctx.fillRect(s.clientX - 2, s.clientY - 2, 4, 4);
+          ctx.beginPath();
+          ctx.arc(s.clientX, s.clientY, 10, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.fill();
         } else {
           console.log("什么都不做");
         }
